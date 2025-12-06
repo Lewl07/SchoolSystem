@@ -22,11 +22,11 @@ public class Address {
      * @return whether the postal code is valid or not.
      */
     public static boolean isPostalCodeValid(String postalCode) {
-        if (postalCode.length() != 6) {
+        if (postalCode == null || postalCode.length() != 6) {
             return false;
         }
 
-        for (int i = 0; i < postalCode.length() - 1; i++) {
+        for (int i = 0; i < postalCode.length(); i++) {
             char c = postalCode.charAt(i);
 
             if (i % 2 == 0 && !Character.isLetter(c)) {

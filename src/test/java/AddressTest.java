@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 import org.leoho.Address;
 
 public class AddressTest {
+    // isPostalCodeValid
+
     @Test
     @DisplayName("A1B2C3 -> true")
     void isPostalCodeValidTest1() {
@@ -43,6 +45,17 @@ public class AddressTest {
         String postalCode = "a1b2c3";
 
         boolean expected = true;
+        boolean actual = Address.isPostalCodeValid(postalCode);
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("null -> false")
+    void isPostalCodeValidTest5() {
+        String postalCode = null;
+
+        boolean expected = false;
         boolean actual = Address.isPostalCodeValid(postalCode);
 
         Assertions.assertEquals(expected, actual);
