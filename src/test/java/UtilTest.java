@@ -29,8 +29,19 @@ public class UtilTest {
     }
 
     @Test
-    @DisplayName("null -> ")
+    @DisplayName("leo -> Leo")
     void toTitleCaseTest3() {
+        String str = "leo";
+
+        String expected = "Leo";
+        String actual = Util.toTitleCase(str);
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("null -> ")
+    void toTitleCaseTest4() {
         String str = null;
 
         String expected = "";
@@ -41,7 +52,7 @@ public class UtilTest {
 
     @Test
     @DisplayName("  ->  ")
-    void toTitleCaseTest4() {
+    void toTitleCaseTest5() {
         String str = "";
 
         String expected = "";
