@@ -3,6 +3,7 @@ package org.leoho;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -10,6 +11,7 @@ import java.util.Random;
 @EqualsAndHashCode
 @Getter
 @Setter
+@ToString
 public class Assignment {
     private String assignmentId;
     private String assignmentName;
@@ -23,7 +25,7 @@ public class Assignment {
     public void calcAssignmentAvg() {
         double sum = 0;
 
-        for (int i = 0; i < scores.size() - 1; i++) {
+        for (int i = 0; i < scores.size(); i++) {
             sum += scores.get(i);
         }
 
@@ -43,33 +45,16 @@ public class Assignment {
 
         if (rand == 0) {
             score = random.nextInt(0, 60);
-        }
-
-        if (rand == 1 || rand == 2) {
+        } else if (rand == 1 || rand == 2) {
             score = random.nextInt(60, 70);
-        }
-
-        if (rand == 3 || rand == 4) {
+        } else if (rand == 3 || rand == 4) {
             score = random.nextInt(70, 80);
-        }
-
-        if (rand == 5 || rand == 6 || rand == 7 || rand == 8) {
+        } else if (rand == 5 || rand == 6 || rand == 7 || rand == 8) {
             score = random.nextInt(80, 90);
-        }
-
-        if (rand == 9 || rand == 10) {
+        } else if (rand == 9 || rand == 10) {
             score = random.nextInt(90, 100 + 1);
         }
 
         scores.add(score);
-    }
-
-    @Override
-    public String toString() {
-        return "Assignment{" +
-                "assignmentId='" + assignmentId + '\'' +
-                ", assignmentName='" + assignmentName + '\'' +
-                ", weight=" + weight +
-                '}';
     }
 }
