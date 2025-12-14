@@ -35,7 +35,7 @@ public class Student {
         course.getRegisteredStudents().add(this);
 
         for (int i = 0; i < course.getAssignments().size(); i++) {
-            scores.add(null);
+            course.getAssignments().get(i).getScores().add(null);
         }
 
         return true;
