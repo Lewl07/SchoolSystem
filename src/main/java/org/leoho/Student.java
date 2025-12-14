@@ -16,7 +16,7 @@ public class Student {
     private Address address;
     private Department department;
     private ArrayList<Course> registeredCourses;
-    private static int nextId;
+    private static int nextId = 1;
 
     /**
      * Registers a course, adds the course to the student's registeredCourses list
@@ -24,7 +24,7 @@ public class Student {
      * If the course is already registered (exists in the student's registeredCourses list)
      * directly returns false without adding anything
      * @param course
-     * @return
+     * @return whether the course has been registered or not.
      */
     public boolean registerCourse(Course course) {
         if (this.registeredCourses.contains(course)) {
@@ -47,7 +47,7 @@ public class Student {
      *  If the course is not registered yet (not in the student's registeredCourses list),
      *  directly returns false without removing anything.
      * @param course the course
-     * @return
+     * @return whether the course has been dropped or not.
      */
     public boolean dropCourse(Course course) {
         if (!this.registeredCourses.contains(course)) {
@@ -58,6 +58,41 @@ public class Student {
         course.getRegisteredStudents().remove(this);
 
         return true;
+    }
+
+    public Student(String studentName, Gender gender, Address address, Department department) {
+        this.studentId = String.format("S%06d", nextId++);
+        this.studentName = studentName;
+        this.gender = gender;
+        this.address = address;
+        this.department = department;
+        this.registeredCourses = new ArrayList<>();
+    }
+
+    /**
+     * Converts a student to a simple string with only the studentId,
+     * the studentName, and departmentName.
+     * This method is called in Course toString().
+     * @return The simplified string.
+     */
+    public String toSimplifiedString() {
+        return "Student{" +
+                "studentId='" + studentId + '\'' +
+                ", studentName='" + studentName + '\'' +
+                ", departmentName=" + department.getDepartmentName() +
+                '}';
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "studentId='" + studentId + '\'' +
+                ", studentName='" + studentName + '\'' +
+                ", gender=" + gender +
+                ", address=" + address +
+                ", department=" + department +
+//                ", registeredCourses=" + registeredCourses +      only courseId, courseName, departmentName
+                '}';
     }
 
     public enum Gender {
