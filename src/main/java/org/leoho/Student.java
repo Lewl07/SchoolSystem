@@ -27,16 +27,35 @@ public class Student {
      * @return
      */
     public boolean registerCourse(Course course) {
-        if (registeredCourses.contains(course)) {
+        if (this.registeredCourses.contains(course)) {
             return false;
         }
 
-        registeredCourses.add(course);
+        this.registeredCourses.add(course);
         course.getRegisteredStudents().add(this);
 
         for (int i = 0; i < course.getAssignments().size(); i++) {
             scores.add(null);
         }
+
+        return true;
+    }
+
+    /**
+     *  Drops a course, remove the course from the student's registeredCourses list,
+     *  and remove the student from the course's registeredStudents list.
+     *  If the course is not registered yet (not in the student's registeredCourses list),
+     *  directly returns false without removing anything.
+     * @param course the course
+     * @return
+     */
+    public boolean dropCourse(Course course) {
+        if (!this.registeredCourses.contains(course)) {
+            return false;
+        }
+
+        this.registeredCourses.remove(course);
+        course.getRegisteredStudents().remove(this);
 
         return true;
     }
