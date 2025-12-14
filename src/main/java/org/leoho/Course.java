@@ -61,7 +61,6 @@ public class Course {
      */
     public boolean addAssignment(String assignmentName, double weight, int maxScore) {
 
-
         return true;
     }
 
@@ -75,12 +74,12 @@ public class Course {
 
 
 
-    public Course(String courseName, double credits, Department department, ArrayList<Assignment> assignments, ArrayList<Student> registeredStudents) {
+    public Course(String courseName, double credits, Department department) {
         this.courseId = String.format("C-%s-%02d", department.getDepartmentId(), nextId++);
         this.courseName = courseName;
         this.credits = credits;
         this.department = department;
-        this.assignments = assignments;
-        this.registeredStudents = registeredStudents;
+        this.assignments = new ArrayList<>();
+        this.registeredStudents = new ArrayList<>();
     }
 }
