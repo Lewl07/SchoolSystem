@@ -1,15 +1,21 @@
 package org.leoho;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.Random;
 
+@EqualsAndHashCode
+@Getter
+@Setter
 public class Assignment {
     private String assignmentId;
     private String assignmentName;
     private double weight;
     private ArrayList<Integer> scores;
-    private static int nextId;
+    private static int nextId = 1;
 
     /**
      * Calculates the average score for the assignment.
