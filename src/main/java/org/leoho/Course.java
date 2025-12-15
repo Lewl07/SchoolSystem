@@ -114,21 +114,27 @@ public class Course {
      * student weighted averages.
      */
     public void displayScores() {
-        System.out.println(String.format("Course: %s (%s)", courseName, courseId));
+        System.out.printf("Course: %s (%s)%n", courseName, courseId);
 
-        // prints assignments list
-        for (int i = 0; i < assignments.size(); i++) {
-            System.out.print(assignments.get(i).getAssignmentName() + " ");
+        System.out.printf("%-25s", "");
+        for (Assignment assignment : assignments) {
+            System.out.printf("%-15s", assignment.getAssignmentName());
         }
+        System.out.printf("%-15s%n", "Final Score");
 
-        System.out.println();
+        generateScores();
+        int[] finalScores = calcStudentsAverage();
 
-        // prints students' name
         for (int i = 0; i < registeredStudents.size(); i++) {
-            System.out.println(registeredStudents.get(i).getStudentName());
-        }
+            System.out.printf("%-25s", registeredStudents.get(i).getStudentName());
 
-        System.out.println();
+            for (Assignment assignment : assignments) {
+                Integer score = assignment.getScores().get(i);
+                System.out.printf("%-15s", score);
+            }
+
+            System.out.printf("%-15d%n", finalScores[i]);
+        }
     }
 
     public Course(String courseName, double credits, Department department) {
