@@ -45,7 +45,7 @@ public class Course {
      * @return whether the student has successfully registered for the course.
      */
     public boolean registerStudent(Student student) {
-        if (registeredStudents.contains(student)) {
+        if (student == null || registeredStudents.contains(student)) {
             return false;
         }
 
