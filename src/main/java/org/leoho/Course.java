@@ -70,7 +70,7 @@ public class Course {
         int[] groupAvg = new int[getRegisteredStudents().size()];
         for (int i = 0; i < getRegisteredStudents().size(); i++) {
             int sum = 0;
-            for (int j = 0; j < assignments.size(); i++) {
+            for (int j = 0; j < assignments.size(); j++) {
                 sum += (assignments.get(j).getScores().get(i)) * (assignments.get(j).getWeight() / 100);
             }
 
