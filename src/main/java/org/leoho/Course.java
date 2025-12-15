@@ -11,9 +11,9 @@ import java.util.ArrayList;
 @Getter
 @Setter
 public class Course {
-    private String courseId;        // 2 digits C-dptID-courseId
+    private String courseId;
     private String courseName;
-    private double credits;         // 1.5, 2.0, 2.5, 3.0
+    private double credits;
     private Department department;
     private ArrayList<Assignment> assignments;
     private ArrayList<Student> registeredStudents;
@@ -67,17 +67,17 @@ public class Course {
             return null;
         }
 
-        int[] groupAvg = new int[getRegisteredStudents().size()];
+        int[] studentsAvg = new int[getRegisteredStudents().size()];
         for (int i = 0; i < getRegisteredStudents().size(); i++) {
             int sum = 0;
             for (int j = 0; j < assignments.size(); j++) {
                 sum += (assignments.get(j).getScores().get(i)) * (assignments.get(j).getWeight() / 100);
             }
 
-            groupAvg[i] = sum / assignments.size();
+            studentsAvg[i] = sum / assignments.size();
         }
 
-        return groupAvg;
+        return studentsAvg;
     }
 
     /**
@@ -122,9 +122,6 @@ public class Course {
         }
 
         System.out.println();
-
-        generateScores();
-        calcStudentsAverage();
 
         // prints students' name
         for (int i = 0; i < registeredStudents.size(); i++) {
