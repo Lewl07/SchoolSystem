@@ -40,22 +40,25 @@ public class Assignment {
      */
     public void generateRandomScore() {
         Random random = new Random();
-        int score = 0;
-        int rand = random.nextInt(0, 10 + 1);
 
-        if (rand == 0) {
-            score = random.nextInt(0, 60);
-        } else if (rand == 1 || rand == 2) {
-            score = random.nextInt(60, 70);
-        } else if (rand == 3 || rand == 4) {
-            score = random.nextInt(70, 80);
-        } else if (rand == 5 || rand == 6 || rand == 7 || rand == 8) {
-            score = random.nextInt(80, 90);
-        } else if (rand == 9 || rand == 10) {
-            score = random.nextInt(90, 100 + 1);
+        for (int i = 0; i < scores.size(); i++) {
+            int score = 0;
+            int rand = random.nextInt(0, 10 + 1);
+
+            if (rand == 0) {
+                score = random.nextInt(0, 60);
+            } else if (rand == 1 || rand == 2) {
+                score = random.nextInt(60, 70);
+            } else if (rand == 3 || rand == 4) {
+                score = random.nextInt(70, 80);
+            } else if (rand == 5 || rand == 6 || rand == 7 || rand == 8) {
+                score = random.nextInt(80, 90);
+            } else if (rand == 9 || rand == 10) {
+                score = random.nextInt(90, 100 + 1);
+            }
+
+            scores.set(i, score);
         }
-
-        scores.add(score);
     }
 
     public Assignment(String assignmentName, double weight) {
