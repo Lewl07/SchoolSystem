@@ -88,7 +88,13 @@ public class Course {
      * @return whether a new assignment has been successfully added to the course.
      */
     public boolean addAssignment(String assignmentName, double weight, int maxScore) {
-        assignments.add(new Assignment(assignmentName, weight));
+        Assignment assignment = new Assignment(assignmentName, weight);
+
+        for (int i = 0; i < registeredStudents.size(); i++) {
+            assignment.getScores().add(null);
+        }
+
+        assignments.add(assignment);
 
         return true;
     }
