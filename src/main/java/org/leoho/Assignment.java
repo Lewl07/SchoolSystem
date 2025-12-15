@@ -57,4 +57,11 @@ public class Assignment {
 
         scores.add(score);
     }
+
+    public Assignment(String assignmentName, double weight) {
+        this.assignmentId = String.format("%02d", nextId++);
+        this.assignmentName = assignmentName;
+        this.weight = weight;
+        this.scores = new ArrayList<>();
+    }
 }
