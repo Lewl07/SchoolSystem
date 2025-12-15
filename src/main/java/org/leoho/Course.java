@@ -68,13 +68,14 @@ public class Course {
         }
 
         int[] studentsAvg = new int[getRegisteredStudents().size()];
+
         for (int i = 0; i < getRegisteredStudents().size(); i++) {
             int sum = 0;
             for (int j = 0; j < assignments.size(); j++) {
                 sum += (assignments.get(j).getScores().get(i)) * (assignments.get(j).getWeight() / 100);
             }
 
-            studentsAvg[i] = sum / assignments.size();
+            studentsAvg[i] = sum;
         }
 
         return studentsAvg;
