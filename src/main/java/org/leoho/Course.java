@@ -18,14 +18,22 @@ public class Course {
     private ArrayList<Student> registeredStudents;
     private static int nextId = 1;
 
-
     /**
      * Checks if the sum of weights of all assignments of that course equals to 100%.
      * @return whether it is valid or not.
      */
     public boolean isAssignmentWeightValid() {
+        if (assignments.isEmpty()) {
+            return false;
+        }
 
-        return true;
+        double sum = 0;
+
+        for (Assignment assignment : assignments) {
+            sum += assignment.getWeight();
+        }
+
+        return sum == 100;
     }
 
     /**
@@ -36,8 +44,15 @@ public class Course {
      * @return whether the student has successfully registered for the course.
      */
     public boolean registerStudent(Student student) {
+        if (registeredStudents.contains(student)) {
+            return false;
+        }
+
         this.registeredStudents.add(student);
 
+        for (Assignment assignment : assignments) {
+            assignment.getScores().add(null);
+        }
 
         return true;
     }
@@ -47,9 +62,26 @@ public class Course {
      * @return the weighted average score of the student.
      */
     public int[] calcStudentsAverage() {
+        int[] groupAvg = new int[getRegisteredStudents().size()];
+        // [i, j]       i: #assignment j: the student
+        // [0, 0]       [1st A, Leo]
+        // [1, 0]       [2nd A, Leo]
+        // [2, 0]       [Exam1, Leo]
 
+        // [0, 1]
+        // [1, 1]
+        // [2, 1]
 
-        return null;
+        for (int i = 0; i < getRegisteredStudents().size(); i++) {
+            int sum = 0;
+            for (int j = 0; j < assignments.size(); i++) {
+                sum += (assignments.get(j).getScores().get(i)) * (assignments.get(j).getWeight() / 100);
+            }
+
+            groupAvg[i] = sum / assignments.size();
+        }
+
+        return groupAvg;
     }
 
     /**
@@ -60,6 +92,7 @@ public class Course {
      * @return whether a new assignment has been successfully added to the course.
      */
     public boolean addAssignment(String assignmentName, double weight, int maxScore) {
+        assignments.add(new Assignment(assignmentName, weight));
 
         return true;
     }
@@ -69,9 +102,20 @@ public class Course {
      * and calculates the final score for each student.
      */
     public void generateScores() {
-
+        for (Assignment assignment : assignments) {
+            assignment.generateRandomScore();
+        }
     }
 
+    /**
+     * Displays the scores of a course in a table, with the assignment averages and
+     * student weighted averages.
+     */
+    public void displayScores() {
+        System.out.println(String.format("Course: %s (%s)", courseName, courseId));
+
+
+    }
 
 
     public Course(String courseName, double credits, Department department) {
