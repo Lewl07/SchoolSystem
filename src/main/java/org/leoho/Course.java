@@ -104,8 +104,8 @@ public class Course {
      * and calculates the final score for each student.
      */
     public void generateScores() {
-        for (int i = 0; i < assignments.size(); i++) {
-            assignments.get(i).getScores().get(i);
+        for (Assignment assignment : assignments) {
+            assignment.generateRandomScore();
         }
     }
 
