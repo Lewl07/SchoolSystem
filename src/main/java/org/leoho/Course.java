@@ -24,7 +24,7 @@ public class Course {
      * @return whether it is valid or not.
      */
     public boolean isAssignmentWeightValid() {
-        if (assignments.isEmpty()) {
+        if (assignments == null || assignments.isEmpty()) {
             return false;
         }
 
