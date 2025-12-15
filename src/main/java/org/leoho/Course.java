@@ -136,4 +136,29 @@ public class Course {
         this.assignments = new ArrayList<>();
         this.registeredStudents = new ArrayList<>();
     }
+
+    /**
+     * String containing only the courseId, courseName, credits and departmentName.
+     * @return the simplified string.
+     */
+    public String toSimplifiedString() {
+        return "Course{" +
+                "courseId='" + courseId + '\'' +
+                ", courseName='" + courseName + '\'' +
+                ", credits=" + credits +
+                ", departmentName=" + department.getDepartmentName() +
+                '}';
+    }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "courseId='" + courseId + '\'' +
+                ", courseName='" + courseName + '\'' +
+                ", departmentName=" + department.getDepartmentName() +
+                ", assignments=" + assignments +
+                ", registeredStudents=" + registeredStudents +
+                ", isAssignmentWeightValid" + isAssignmentWeightValid() +
+                '}';
+    }
 }
