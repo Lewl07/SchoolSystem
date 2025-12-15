@@ -4,6 +4,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import util.Util;
 
 @ToString
 @EqualsAndHashCode
@@ -11,7 +12,7 @@ import lombok.ToString;
 public class Department {
     private final String departmentId;
     @Setter private String departmentName;
-    private static int nextId;
+    private static int nextId = 1;
 
     /**
      * Checks if a department name is valid or not.
@@ -38,7 +39,7 @@ public class Department {
     public Department(String departmentName) {
         if (isDepartmentNameValid(departmentName)) {
             this.departmentId = String.format("D%02d", nextId++);
-            this.departmentName = departmentName;
+            this.departmentName = Util.toTitleCase(departmentName);
         } else {
             this.departmentId = null;
             this.departmentName = null;

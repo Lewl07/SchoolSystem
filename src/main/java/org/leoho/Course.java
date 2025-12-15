@@ -3,6 +3,7 @@ package org.leoho;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import util.Util;
 
 import java.util.ArrayList;
 
@@ -62,16 +63,11 @@ public class Course {
      * @return the weighted average score of the student.
      */
     public int[] calcStudentsAverage() {
+        if (assignments == null || assignments.isEmpty()) {
+            return null;
+        }
+
         int[] groupAvg = new int[getRegisteredStudents().size()];
-        // [i, j]       i: #assignment j: the student
-        // [0, 0]       [1st A, Leo]
-        // [1, 0]       [2nd A, Leo]
-        // [2, 0]       [Exam1, Leo]
-
-        // [0, 1]
-        // [1, 1]
-        // [2, 1]
-
         for (int i = 0; i < getRegisteredStudents().size(); i++) {
             int sum = 0;
             for (int j = 0; j < assignments.size(); i++) {
@@ -102,8 +98,8 @@ public class Course {
      * and calculates the final score for each student.
      */
     public void generateScores() {
-        for (Assignment assignment : assignments) {
-            assignment.generateRandomScore();
+        for (int i = 0; i < assignments.size(); i++) {
+            assignments.get(i).getScores().get(i);
         }
     }
 
@@ -114,13 +110,27 @@ public class Course {
     public void displayScores() {
         System.out.println(String.format("Course: %s (%s)", courseName, courseId));
 
+        // prints assignments list
+        for (int i = 0; i < assignments.size(); i++) {
+            System.out.print(assignments.get(i).getAssignmentName() + " ");
+        }
 
+        System.out.println();
+
+        generateScores();
+        calcStudentsAverage();
+
+        // prints students' name
+        for (int i = 0; i < registeredStudents.size(); i++) {
+            System.out.println(registeredStudents.get(i).getStudentName());
+        }
+
+        System.out.println();
     }
-
 
     public Course(String courseName, double credits, Department department) {
         this.courseId = String.format("C-%s-%02d", department.getDepartmentId(), nextId++);
-        this.courseName = courseName;
+        this.courseName = Util.toTitleCase(courseName);
         this.credits = credits;
         this.department = department;
         this.assignments = new ArrayList<>();
