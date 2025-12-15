@@ -59,6 +59,6 @@ public class Address {
     }
 
     public enum Province {
-        ON, QC, AB, BC, MB, SK, NB, NL, NS, PE
+        ON, QC, AB, BC, MB, NB, NL, NS, PE, SK
     }
 }
